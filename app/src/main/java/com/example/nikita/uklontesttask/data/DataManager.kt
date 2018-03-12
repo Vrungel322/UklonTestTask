@@ -18,6 +18,6 @@ class DataManager() {
     return "Tempo"
   }
 
-  fun fetchPosts(): Observable<PostEntity> = mRestApi.fetchPosts()
+  fun fetchPosts(): Observable<List<PostEntity>> = mRestApi.fetchPosts()
 
 }

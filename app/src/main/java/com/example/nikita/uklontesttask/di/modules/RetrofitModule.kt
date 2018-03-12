@@ -27,7 +27,7 @@ class RetrofitModule {
 
   @Provides
   @Singleton
-  @Named("Sugarman") internal fun provideRetrofit(
+  internal fun provideRetrofit(
       converterFactory: Converter.Factory, okClient: OkHttpClient): Retrofit {
     return Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com/")
         //return new Retrofit.Builder().baseUrl(Config.SERVER_URL)

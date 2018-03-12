@@ -16,5 +16,5 @@ interface Api {
 //      @Query("include_entities") includeEntities: Boolean = true): Observable<List<Tweet>>
 
   @GET("posts")
-  fun fetchPosts(): Observable<PostEntity>
+  fun fetchPosts(): Observable<List<PostEntity>>
 }

@@ -14,6 +14,6 @@ class RestApi {
     this.api = api
   }
 
-  fun fetchPosts(): Observable<PostEntity> = api.fetchPosts()
+  fun fetchPosts(): Observable<List<PostEntity>> = api.fetchPosts()
 
 }
