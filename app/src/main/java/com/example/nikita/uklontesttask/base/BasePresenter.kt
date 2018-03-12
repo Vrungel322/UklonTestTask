@@ -18,14 +18,14 @@ abstract class BasePresenter<V : MvpView>() : MvpPresenter<V>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        Timber.e(mDataManager.getString());
+        Timber.e(mDataManager.getString())
     }
 
     init {
         init()
     }
 
-    fun addToUnsubscription(subscription: Disposable?) {
+    fun addToUnsubscription(subscription: Disposable) {
         mCompositeDisposable.add(subscription)
     }
 

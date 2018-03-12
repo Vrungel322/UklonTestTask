@@ -1,4 +1,8 @@
-package com.example.nikita.uklontesttask.data
+package com.example.nikita.uklontesttask.data.remote
+
+import com.example.nikita.uklontesttask.data.models.PostEntity
+import io.reactivex.Observable
+import retrofit2.http.GET
 
 /**
  * Created by nikita on 12.03.2018.
@@ -10,4 +14,7 @@ interface Api {
 //      @Query("exclude_replies") excludeReplies: Boolean = true,
 //      @Query("contributor_details") contributorDetails: Boolean = true,
 //      @Query("include_entities") includeEntities: Boolean = true): Observable<List<Tweet>>
+
+  @GET("posts")
+  fun fetchPosts(): Observable<PostEntity>
 }

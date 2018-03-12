@@ -8,8 +8,22 @@ import com.example.nikita.uklontesttask.base.BasePresenter
  * Created by nikita on 12.03.2018.
  */
 @InjectViewState
-class MainActivityPresenter: BasePresenter<IMainActivityView>() {
+class MainActivityPresenter : BasePresenter<IMainActivityView>() {
   override fun init() {
     App.sAppComponent.inject(this)
+  }
+
+  override fun onFirstViewAttach() {
+    super.onFirstViewAttach()
+    fetchPosts()
+  }
+
+  fun fetchPosts() {
+//    val subscription: Disposable = mDataManager.fetchPosts().subscribeOn(
+//        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
+//      Timber.e(
+//          t.body!!.length.toString())
+//    }
+//    addToUnsubscription(subscription)
   }
 }
