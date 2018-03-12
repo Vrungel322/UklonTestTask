@@ -1,11 +1,13 @@
 package com.example.nikita.uklontesttask.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.nikita.uklontesttask.R.layout
 import com.example.nikita.uklontesttask.base.BaseActivity
 import com.example.nikita.uklontesttask.data.models.PostEntity
+import com.example.nikita.uklontesttask.profile.ProfileActivity
 import com.example.nikita.uklontesttask.utils.ItemClickSupport
 import kotlinx.android.synthetic.main.activity_main.rvPosts
 import timber.log.Timber
@@ -28,6 +30,9 @@ class MainActivity : BaseActivity(), IMainActivityView {
     rvPosts.adapter = postsAdapter
     ItemClickSupport.addTo(rvPosts).setOnItemClickListener { recyclerView, position, v ->
       Timber.e("setUpUi click " + position)
+      val profileIntent = Intent(applicationContext,ProfileActivity::class.java)
+      profileIntent.putExtra(PostEntity.POST_ENTITY,postsAdapter.getEntities().get(position))
+      startActivity(profileIntent)
     }
   }
 

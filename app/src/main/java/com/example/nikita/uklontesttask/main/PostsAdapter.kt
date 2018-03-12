@@ -36,6 +36,8 @@ class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
     notifyDataSetChanged()
   }
 
+  fun getEntities() = postList
+
   class PostViewHolder : RecyclerView.ViewHolder {
     constructor(itemView: View) : super(itemView)
 
