@@ -6,6 +6,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.nikita.uklontesttask.R.layout
 import com.example.nikita.uklontesttask.base.BaseActivity
 import com.example.nikita.uklontesttask.data.models.PostEntity
+import com.example.nikita.uklontesttask.utils.ItemClickSupport
 import kotlinx.android.synthetic.main.activity_main.rvPosts
 import timber.log.Timber
 
@@ -25,6 +26,9 @@ class MainActivity : BaseActivity(), IMainActivityView {
     rvPosts.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL,
         false)
     rvPosts.adapter = postsAdapter
+    ItemClickSupport.addTo(rvPosts).setOnItemClickListener { recyclerView, position, v ->
+      Timber.e("setUpUi click " + position)
+    }
   }
 
   override fun addPosts(posts: List<PostEntity>) {
