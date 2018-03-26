@@ -75,7 +75,7 @@
       />
 
   <android.support.v4.widget.SwipeRefreshLayout
-      android:id="@+id/srl"
+      android:id="@+id/srlComments"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:layout_marginTop="64dp"

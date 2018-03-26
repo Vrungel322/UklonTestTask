@@ -12,7 +12,7 @@ import com.example.nikita.uklontesttask.data.models.PostEntity
 import com.example.nikita.uklontesttask.data.models.user.UserEntity
 import com.example.nikita.uklontesttask.utils.ItemClickSupport
 import kotlinx.android.synthetic.main.activity_profile.rvComments
-import kotlinx.android.synthetic.main.activity_profile.srl
+import kotlinx.android.synthetic.main.activity_profile.srlComments
 import kotlinx.android.synthetic.main.activity_profile.tvCompanyName
 import kotlinx.android.synthetic.main.activity_profile.tvEmail
 import kotlinx.android.synthetic.main.activity_profile.tvName
@@ -45,8 +45,8 @@ class ProfileActivity : BaseActivity(), IProfileActivityView {
     ItemClickSupport.addTo(rvComments).setOnItemClickListener { recyclerView, position, v ->
     }
 
-    srl.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
-    srl.setOnRefreshListener({
+    srlComments.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
+    srlComments.setOnRefreshListener({
       mPresenter.fetchComments(postEntity.id)
     })
   }
@@ -61,7 +61,7 @@ class ProfileActivity : BaseActivity(), IProfileActivityView {
   }
 
   override fun showComments(body: List<CommentEntity>) {
-    srl.isRefreshing = false
+    srlComments.isRefreshing = false
     Toast.makeText(applicationContext, "Refreshed", Toast.LENGTH_SHORT).show()
     commentsAdapter.addEntities(body)
   }
