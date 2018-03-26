@@ -28,6 +28,7 @@ class MainActivityPresenter : BasePresenter<IMainActivityView>() {
       Timber.e("" + t.size)
       viewState.addPosts(t)
     }
+
     addToUnsubscription(subscription)
   }
 }

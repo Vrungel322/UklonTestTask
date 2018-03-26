@@ -47,7 +47,5 @@ class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
         itemView.tvPostBody.text = body
       }
     }
-
-
   }
 }

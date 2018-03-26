@@ -12,11 +12,15 @@ import kotlinx.android.parcel.Parcelize
  */
 @SuppressLint("ParcelCreator")
 @Parcelize
-data class PostEntity(@SerializedName("userId")
-@Expose val userId: Int? = null, @SerializedName("id")
-@Expose val id: Int? = null, @SerializedName("title")
-@Expose val title: String? = null, @SerializedName("body")
-@Expose val body: String? = null) : Parcelable {
+data class PostEntity(
+    @SerializedName("userId")
+    @Expose val userId: Int? = null,
+    @SerializedName("id")
+    @Expose val id: Int? = null,
+    @SerializedName("title")
+    @Expose val title: String? = null,
+    @SerializedName("body")
+    @Expose val body: String? = null) : Parcelable {
   companion object {
     val POST_ENTITY = "POST_ENTITY"
   }
