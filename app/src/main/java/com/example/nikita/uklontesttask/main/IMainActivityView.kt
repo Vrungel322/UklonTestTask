@@ -11,4 +11,5 @@ import com.example.nikita.uklontesttask.data.models.PostEntity
 @StateStrategyType(value = AddToEndSingleStrategy::class)
 interface IMainActivityView : MvpView {
   fun addPosts(posts: List<PostEntity>)
+  fun hideSwipeRefresh()
 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.nikita.uklontesttask.R
 import com.example.nikita.uklontesttask.R.layout
@@ -17,7 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.srlPosts
 import timber.log.Timber
 
 class MainActivity : BaseActivity(), IMainActivityView {
-  @InjectPresenter lateinit var mPresenter: MainActivityPresenter
+  @InjectPresenter
+  lateinit var mPresenter: MainActivityPresenter
   private lateinit var postsAdapter: PostsAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +33,9 @@ class MainActivity : BaseActivity(), IMainActivityView {
         false)
     rvPosts.adapter = postsAdapter
     ItemClickSupport.addTo(rvPosts).setOnItemClickListener { recyclerView, position, v ->
-      Timber.e("setUpUi click " + position)
-      val profileIntent = Intent(applicationContext,ProfileActivity::class.java)
-      profileIntent.putExtra(PostEntity.POST_ENTITY,postsAdapter.getEntities().get(position))
+      Timber.e("setUpUi click $position")
+      val profileIntent = Intent(applicationContext, ProfileActivity::class.java)
+      profileIntent.putExtra(PostEntity.POST_ENTITY, postsAdapter.getEntities().get(position))
       startActivity(profileIntent)
       overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity)
     }
@@ -47,8 +47,11 @@ class MainActivity : BaseActivity(), IMainActivityView {
   }
 
   override fun addPosts(posts: List<PostEntity>) {
-    srlPosts.isRefreshing = false
-      Toast.makeText(applicationContext, "Refreshed", Toast.LENGTH_SHORT).show()
+    hideSwipeRefresh()
     postsAdapter.addEntities(posts)
+  }
+
+  override fun hideSwipeRefresh() {
+    srlPosts.isRefreshing = false
   }
 }

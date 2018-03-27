@@ -27,7 +27,10 @@ class MainActivityPresenter : BasePresenter<IMainActivityView>() {
         Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ t ->
       Timber.e("" + t.size)
       viewState.addPosts(t)
-    }, { t: Throwable -> t.printStackTrace() })
+    }, { t: Throwable ->
+      t.printStackTrace()
+      viewState.hideSwipeRefresh()
+    })
 
     addToUnsubscription(subscription)
   }
