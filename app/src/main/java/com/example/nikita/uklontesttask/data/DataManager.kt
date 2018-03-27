@@ -36,8 +36,13 @@ class DataManager() {
     mDbHelper.save(CommentRealmEntity(commentsList))
   }
 
-  fun fetchDbComments(): RealmList<CommentEntity> {
-    return mDbHelper.getAll(CommentRealmEntity::class.java)[0].realmList
+  fun fetchDbComments(): RealmList<CommentEntity>? {
+    return if (mDbHelper.getAll(CommentRealmEntity::class.java).isNotEmpty()){
+      mDbHelper.getAll(CommentRealmEntity::class.java)[0].realmList
+    }
+    else{
+      null
+    }
   }
 
 }

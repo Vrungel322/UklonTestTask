@@ -28,7 +28,9 @@ class ProfileActivityPresenter : BasePresenter<IProfileActivityView>() {
   }
 
   fun fetchComments(postId: Int?) {
-    viewState.showComments(mDataManager.fetchDbComments().filter { it -> it.postId == postId })
+    mDataManager.fetchDbComments()?.filter { it -> it.postId == postId }?.let { it1 ->
+      viewState.showComments(it1)
+    }
     val subscription: Disposable = mDataManager.fetchComments(postId.toString()).subscribeOn(
         Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ t ->
       Timber.e("fetchComments : body " + t.body()?.size + "\n code:" + t.code())
@@ -36,7 +38,7 @@ class ProfileActivityPresenter : BasePresenter<IProfileActivityView>() {
         viewState.showComments(it)
         mDataManager.saveDbComments(it)
       }
-      Timber.e("savedCount " + mDataManager.fetchDbComments().size)
+      Timber.e("savedCount " + mDataManager.fetchDbComments()?.size)
 
     }, { t: Throwable -> t.printStackTrace() })
     addToUnsubscription(subscription)
