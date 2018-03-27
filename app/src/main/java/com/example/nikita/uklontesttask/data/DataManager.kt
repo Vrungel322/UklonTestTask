@@ -33,14 +33,19 @@ class DataManager() {
       postId)
 
   fun saveDbComments(commentsList: List<CommentEntity>) {
-    mDbHelper.save(CommentRealmEntity(commentsList))
+    val commentsListStored = ArrayList<CommentEntity>()
+    if (mDbHelper.getAll(CommentRealmEntity::class.java).isNotEmpty()) {
+      commentsListStored.addAll(mDbHelper.getAll(CommentRealmEntity::class.java)[0].realmList)
+    }
+    commentsListStored.addAll(commentsList)
+    mDbHelper.dropRealmTable(CommentRealmEntity::class.java)
+    mDbHelper.save(CommentRealmEntity(commentsListStored.distinctBy { it.id }))
   }
 
   fun fetchDbComments(): RealmList<CommentEntity>? {
-    return if (mDbHelper.getAll(CommentRealmEntity::class.java).isNotEmpty()){
+    return if (mDbHelper.getAll(CommentRealmEntity::class.java).isNotEmpty()) {
       mDbHelper.getAll(CommentRealmEntity::class.java)[0].realmList
-    }
-    else{
+    } else {
       null
     }
   }
