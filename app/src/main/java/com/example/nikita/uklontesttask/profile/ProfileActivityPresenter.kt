@@ -36,7 +36,7 @@ class ProfileActivityPresenter : BasePresenter<IProfileActivityView>() {
       Timber.e("fetchComments : body " + t.body()?.size + "\n code:" + t.code())
       t.body()?.let {
         viewState.showComments(it)
-        mDataManager.saveDbComments(it)
+//        mDataManager.saveDbComments(it)
       }
       Timber.e("savedCount " + mDataManager.fetchDbComments()?.size)
 
