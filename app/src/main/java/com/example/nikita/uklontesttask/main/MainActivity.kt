@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.example.nikita.uklontesttask.R
 import com.example.nikita.uklontesttask.R.layout
 import com.example.nikita.uklontesttask.base.BaseActivity
 import com.example.nikita.uklontesttask.data.models.PostEntity
@@ -36,6 +37,7 @@ class MainActivity : BaseActivity(), IMainActivityView {
       val profileIntent = Intent(applicationContext,ProfileActivity::class.java)
       profileIntent.putExtra(PostEntity.POST_ENTITY,postsAdapter.getEntities().get(position))
       startActivity(profileIntent)
+      overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity)
     }
 
     srlPosts.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
