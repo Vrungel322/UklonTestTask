@@ -19,21 +19,26 @@ class ProfileActivityPresenter : BasePresenter<IProfileActivityView>() {
 
   fun fetchUser(userId: Int?) {
     val subscription: Disposable = mDataManager.fetchUser(userId.toString()).subscribeOn(
-        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
+        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ t ->
       val userEntity = t.body()
       Timber.e("fetchUser : body " + userEntity.toString() + "\n code:" + t.code())
       t.body()?.let { viewState.showUser(it) }
-    }
+    }, { t: Throwable -> t.printStackTrace() })
     addToUnsubscription(subscription)
   }
 
   fun fetchComments(postId: Int?) {
+    viewState.showComments(mDataManager.fetchDbComments().filter { it -> it.postId == postId })
     val subscription: Disposable = mDataManager.fetchComments(postId.toString()).subscribeOn(
-        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
+        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ t ->
       Timber.e("fetchComments : body " + t.body()?.size + "\n code:" + t.code())
-      t.body()?.let { viewState.showComments(it) }
+      t.body()?.let {
+        viewState.showComments(it)
+        mDataManager.saveDbComments(it)
+      }
+      Timber.e("savedCount " + mDataManager.fetchDbComments().size)
 
-    }
+    }, { t: Throwable -> t.printStackTrace() })
     addToUnsubscription(subscription)
   }
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.nikita.uklontesttask.di.components.AppComponent
 import com.example.nikita.uklontesttask.di.components.DaggerAppComponent
 import com.example.nikita.uklontesttask.di.modules.AppModule
+import io.realm.Realm
 import timber.log.Timber
 
 /**
@@ -20,5 +21,6 @@ class App : Application() {
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     }
+    Realm.init(this)
   }
 }

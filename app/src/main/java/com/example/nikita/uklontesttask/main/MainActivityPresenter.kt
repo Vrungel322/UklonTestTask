@@ -24,10 +24,10 @@ class MainActivityPresenter : BasePresenter<IMainActivityView>() {
 
   fun fetchPosts() {
     val subscription: Disposable = mDataManager.fetchPosts().subscribeOn(
-        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { t ->
+        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ t ->
       Timber.e("" + t.size)
       viewState.addPosts(t)
-    }
+    }, { t: Throwable -> t.printStackTrace() })
 
     addToUnsubscription(subscription)
   }

@@ -2,12 +2,13 @@ package com.example.nikita.uklontesttask.data.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
 
 
 /**
  * Created by vrungel on 26.03.2018.
  */
-data class CommentEntity(
+open class CommentEntity(
     @SerializedName("postId")
     @Expose
     var postId: Int? = null,
@@ -22,6 +23,6 @@ data class CommentEntity(
     var email: String? = null,
     @SerializedName("body")
     @Expose
-    var body: String? = null) {
+    var body: String? = null) : RealmObject() {
 
 }

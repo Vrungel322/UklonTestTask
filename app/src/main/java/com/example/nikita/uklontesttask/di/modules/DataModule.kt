@@ -1,6 +1,7 @@
 package com.example.nikita.uklontesttask.di.modules
 
 import com.example.nikita.uklontesttask.data.DataManager
+import com.example.nikita.uklontesttask.data.local.DbHelper
 import com.example.nikita.uklontesttask.data.remote.Api
 import com.example.nikita.uklontesttask.data.remote.RestApi
 import dagger.Module
@@ -19,11 +20,16 @@ class DataModule {
 
   @Provides
   @Singleton
-  fun provideRestApi(api:Api): RestApi = RestApi(api)
+  fun provideRestApi(api: Api): RestApi = RestApi(api)
+
+  @Provides
+  @Singleton
+  fun provideDbHelper(): DbHelper = DbHelper()
 
 
   @Provides
   @Singleton
-  fun provideDataManager(restApi: RestApi): DataManager = DataManager(restApi)
+  fun provideDataManager(restApi: RestApi, dbHelper: DbHelper): DataManager = DataManager(restApi,
+      dbHelper)
 
 }
