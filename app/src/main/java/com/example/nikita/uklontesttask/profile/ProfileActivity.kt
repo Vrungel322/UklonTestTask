@@ -63,7 +63,6 @@ class ProfileActivity : BaseActivity(), IProfileActivityView {
 
   override fun showComments(body: List<CommentEntity>) {
     srlComments.isRefreshing = false
-    Toast.makeText(applicationContext, "Refreshed", Toast.LENGTH_SHORT).show()
     commentsAdapter.addEntities(body)
   }
 }
