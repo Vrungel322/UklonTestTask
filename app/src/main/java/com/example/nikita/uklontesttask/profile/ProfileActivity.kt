@@ -47,6 +47,7 @@ class ProfileActivity : BaseActivity(), IProfileActivityView {
 
     srlComments.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
     srlComments.setOnRefreshListener({
+      mPresenter.fetchUser(postEntity.userId)
       mPresenter.fetchComments(postEntity.id)
     })
   }
